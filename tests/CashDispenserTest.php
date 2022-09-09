@@ -78,6 +78,11 @@ class CashDispenserTest extends \PHPUnit\Framework\TestCase
                 1000000000000,
                 [10 => 100000000000],
             ],
+            [
+                ['30' => 3, '50' => 3, '100' => 2],
+                160,
+                [100 => 1, 30 => 2],
+            ],
         ];
     }
 
