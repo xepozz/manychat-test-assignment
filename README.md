@@ -1,26 +1,29 @@
 # ManyChat Test assignment
 
-
 ## Original goal:
 
-Emulate ATM work where ATM should give banknotes as high as possible. 
+Emulate ATM work where ATM should give banknotes as high as possible.
 ATM should try to combine banknotes if it's impossible to give only higher banknotes.
 
 ## Running instruction
 
-1. ```
+1. Clone the repository
+    ```
     git clone git@github.com:xepozz/manychat-test-assignment
-   ```
-2. ```bash
+    ```
+2. Install dependencies
+    ```bash
     composer install
     ```
-3. ```bash
+3. Run tests
+    ```bash
     ./vendor/bin/phpunit tests
     ```
 
 ## Test cases
 
 ### Stage 1
+
 Banknotes in use:
 
 `100, 50`
@@ -30,6 +33,7 @@ Banknotes in use:
 3. If user asks for `250` ATM should give `[100, 100, 50]`
 
 ### Stage 2
+
 Banknotes in use, also they are limited by number:
 `100 => 2, 50 => 3`
 
@@ -39,6 +43,7 @@ Banknotes in use, also they are limited by number:
 4. If user asks for `350` ATM should give `[100, 100, 50, 50, 50]`
 
 ### Stage 3
+
 Banknotes in use, also they are limited by number:
 `100 => 2, 50 => 3, 30 => 4`
 
