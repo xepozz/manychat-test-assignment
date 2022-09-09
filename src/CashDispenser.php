@@ -39,8 +39,8 @@ class CashDispenser
 
         if ($moneyLeft > 0) {
             $banknotes = $banknotesOriginal;
-            foreach ($output as $banknote => $_) {
-                $banknotes[$banknote]--;
+            foreach ($output as $banknote => $count) {
+                $banknotes[$banknote] = $count - 1;
                 break;
             }
             return $this->calculateInner($banknotes, $moneyLeftOriginal);
