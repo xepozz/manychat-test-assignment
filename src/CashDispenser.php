@@ -45,6 +45,10 @@ class CashDispenser
             $moneyLeft -= $banknotesToGive * $banknote;
         }
 
+        if ($output === []) {
+            throw new \LogicException();
+        }
+
         if ($moneyLeft > 0) {
             $banknotes = $banknotesOriginal;
             foreach ($output as $banknote => $count) {
