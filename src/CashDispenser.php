@@ -12,6 +12,9 @@ class CashDispenser
 
     public function calculate(int $sum): array
     {
+        if ($sum === 0) {
+            throw new \LogicException();
+        }
         $moneyLeft = $sum;
         $banknotes = $this->banknotes;
 
@@ -21,6 +24,11 @@ class CashDispenser
     private function calculateInner(array $banknotes, int $moneyLeft): array
     {
         $banknotes = array_filter($banknotes, fn ($count) => $count > 0);
+
+        if ($banknotes === []) {
+            throw new \LogicException();
+        }
+
         $banknotesOriginal = $banknotes;
         $moneyLeftOriginal = $moneyLeft;
         $output = [];

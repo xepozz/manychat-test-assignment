@@ -9,7 +9,7 @@ use App\CashDispenser;
 class CashDispenserTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @dataProvider dataProvider
+     * @dataProvider mainProvider
      */
     public function testMain(array $banknotes, int $sum, array $expectedResult)
     {
@@ -19,7 +19,18 @@ class CashDispenserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedResult, $actualResult);
     }
 
-    public function dataProvider(): array
+    /**
+     * @dataProvider failureProvider
+     */
+    public function testFailure(array $banknotes, int $sum)
+    {
+        $dispenser = new CashDispenser($banknotes);
+
+        $this->expectException(\LogicException::class);
+        $dispenser->calculate($sum);
+    }
+
+    public function mainProvider(): array
     {
         return [
             [
@@ -61,6 +72,33 @@ class CashDispenserTest extends \PHPUnit\Framework\TestCase
                 ['30' => 4, '50' => 1000000000, '100' => 1000000000],
                 120,
                 [30 => 4],
+            ],
+            [
+                ['10' => 1000000000000],
+                1000000000000,
+                [10 => 100000000000],
+            ],
+        ];
+    }
+
+    public function failureProvider(): array
+    {
+        return [
+            [
+                ['100' => 1],
+                0,
+            ],
+            [
+                [],
+                50,
+            ],
+            [
+                ['100' => 1],
+                200,
+            ],
+            [
+                ['30' => 3, '50' => 1, '100' => 1],
+                120,
             ],
         ];
     }
